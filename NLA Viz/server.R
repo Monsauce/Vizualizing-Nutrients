@@ -22,7 +22,7 @@ shinyServer(function(input, output) {
   # ui buttons
   output$slider <- renderUI({
     sliderInput(inputId="nut",
-                label="Choose your nitrogen input",
+                label="Choose your nitrogen input (mg/L)",
                 value=2, min=0.7, max=5.0)
   })
   # reactive functions
@@ -50,7 +50,7 @@ shinyServer(function(input, output) {
   output$CyanoMap <- renderPlot({
     Cyano <- predictData()
     all_states <- map_data("state")
-    p <- ggplot()+geom_polygon(data=all_states, aes(x=long, y=lat, group = group),colour="grey70", fill="grey70" )+
+    p <- ggplot()+geom_polygon(data=all_states, aes(x=long, y=lat, group = group),colour="#939597", fill="#939597")+
       geom_point(data=Cyano, aes(colour=ECO_NUTA, x=LON_DD, y=LAT_DD, size = predictions))+
       theme(legend.position="none")+ 
       theme(axis.text.y = element_blank())+
@@ -60,7 +60,9 @@ shinyServer(function(input, output) {
       theme(axis.title.y = element_blank())+
       theme(panel.grid.major = element_blank())+
       theme(panel.grid.minor = element_blank())+
-      theme(panel.background = element_rect(fill = "white"))
+      theme(panel.background = element_rect(fill = "white"))+
+      scale_size_continuous(range = c(1,7))+
+      scale_colour_manual(values = c("#C39A6B","#B51F2D", "#009344","#FFF100","#A87B4F","#1B75BB","#74B7E4","#808284","#FEDD4E","#006738","white"))
     
     return(p)
   })
