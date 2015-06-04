@@ -23,7 +23,7 @@ shinyServer(function(input, output) {
   output$slider <- renderUI({
     sliderInput(inputId="nut",
                 label="Choose your nitrogen input (mg/L)",
-                value=2, min=0.7, max=5.0)
+                value=2.5, min=1, max=5.0)
   })
   # reactive functions
   getData <- reactive({
