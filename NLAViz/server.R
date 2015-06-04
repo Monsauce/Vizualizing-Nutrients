@@ -12,19 +12,45 @@ shinyServer(function(input, output) {
                 label="Choose your nitrogen input (mg/L)",
                 value=2.5, min=1, max=5.0)
   })
+  output$lake_origin_check <- renderUI({
+    dt <- getData()
+    lake_choices <- as.character(unique(dt[, LAKE_ORIGIN]))
+    checkboxGroupInput(inputId = "lake_origin",
+                label = "Choose a Lake Origin",
+                choices = lake_choices,
+                selected = lake_choices)
+  })
+  output$lake_depth_check <- renderUI({
+    dt <- getData()
+    lake_choices <- as.character(unique(dt[, check_lake_depth]))
+    checkboxGroupInput(inputId = "lake_depth",
+                       label = "Choose a Lake Depth",
+                       choices = lake_choices,
+                       selected = lake_choices)
+  })
   # reactive functions
   getData <- reactive({
     df <- data.table(NLA_MB)
-    df <- df[, list(LON_DD, 
+    return(df)
+  })
+  filterData <- reactive({
+    dt <- getData()
+    dt <- dt[LAKE_ORIGIN %in% input$lake_origin &
+               check_lake_depth %in% input$lake_depth]
+    validate(
+      need(nrow(dt) != 0, "Please check at least one option in Lake Origin or Lake Depth")
+    )
+    dt <- dt[, list(LON_DD, 
                     LAT_DD, 
                     ECO_NUTA,
                     ni = input$nut)]
-    
-    return(df)
+    return(dt)
   })
-  
   predictData <- reactive({
-    dt <- getData()
+    dt <- filterData()
+    validate(
+      need(nrow(dt) != 0, "Please check at least one option Lake Origin or Lake Depth")
+    )
     setnames(dt, old = "ni", new =  c("log10NTL"))
     predictions <- predict(mod, newdata = dt)
     dt[, `:=`(predictions = predictions)]
