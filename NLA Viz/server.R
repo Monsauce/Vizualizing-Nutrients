@@ -15,7 +15,7 @@ NLA_MB$log10MC <- log10(NLA_MB$MC)
 NLA_MB$ssCY <- (NLA_MB$CY)^0.25
 NLA_MB$log10NTL <- log10(NLA_MB$NTL)
 NLA_MB$log10PTL <- log10(NLA_MB$PTL)
-mod<-lmer(ssCY ~ log10NTL + (log10NTL|ECO_NUTA), data=NLA_MB)
+mod<-glmer.nb(round(NLA_MB$ssCY,0) ~ log10NTL + (log10NTL|ECO_NUTA), data=NLA_MB)
 
 # Define a server for the Shiny app
 shinyServer(function(input, output) {
