@@ -34,6 +34,9 @@ shinyServer(function(input, output) {
   output$nitrogen_gif <- renderUI({
     return(HTML("<img src=\"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/NLAViz/Nitrogen.gif\">"))
   })
+  output$dilution <- renderUI({
+    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/NLAViz/Dilutions.png\">"))
+  })
   # reactive functions
   getData <- reactive({
     df <- data.table(NLA_MB)

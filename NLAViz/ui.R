@@ -21,12 +21,16 @@ shinyUI(fluidPage(
   ),
   fluidRow(
     htmlOutput("banner"),
-    width = 12
-    ),
+    width = 8
+  ),
   fluidRow(
     htmlOutput("nitrogen_gif"),
     width = 12
+  ),
+  fluidRow(
+    htmlOutput("dilution"),
+    width = 8
   )
-
+  
   
 ))
