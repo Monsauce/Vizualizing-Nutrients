@@ -16,13 +16,17 @@ shinyUI(fluidPage(
            htmlOutput("lake_depth_check")
     ),
     column(8,
-           plotOutput("CyanoMap",  width = "1000px", height = "600px"))
+           plotOutput("CyanoMap",  width = "1000px", height = "600px")
+    )
+  ),
+  fluidRow(
+    htmlOutput("banner"),
+    width = 12
+    ),
+  fluidRow(
+    htmlOutput("nitrogen_gif"),
+    width = 12
   )
 
-#   
-#   mainPanel(
-#     ,
-#     width = 12
-#   )
   
 ))

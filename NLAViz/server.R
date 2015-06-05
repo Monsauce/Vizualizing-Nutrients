@@ -28,6 +28,12 @@ shinyServer(function(input, output) {
                        choices = lake_choices,
                        selected = lake_choices)
   })
+  output$banner <- renderUI({
+    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/NLAViz/Banner.png\">"))
+  })
+  output$nitrogen_gif <- renderUI({
+    return(HTML("<img src=\"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/NLAViz/Nitrogen.gif\">"))
+  })
   # reactive functions
   getData <- reactive({
     df <- data.table(NLA_MB)
