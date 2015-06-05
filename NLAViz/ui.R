@@ -20,15 +20,21 @@ shinyUI(fluidPage(
     )
   ),
   fluidRow(
+    # Calls Banner.png
     htmlOutput("banner"),
+    # Changes the width of the fluidRow
     width = 8
   ),
   fluidRow(
+    # Calls Nitrogen.gif
     htmlOutput("nitrogen_gif"),
+    # Changes the width of the fluidRow
     width = 12
   ),
   fluidRow(
+    # Calls Dilutions.png
     htmlOutput("dilution"),
+    # Changes the width of the fluidRow
     width = 8
   )
   
