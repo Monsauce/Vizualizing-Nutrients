@@ -24,8 +24,8 @@ NLA_MB$log10NTL <- log10(NLA_MB$NTL)
 NLA_MB$log10PTL <- log10(NLA_MB$PTL)
 
 # new check_lake_depth for easier use in shiny app
-NLA_MB[DEPTHMAX >= 4, `:=`(check_lake_depth = ">= 4m")]
-NLA_MB[DEPTHMAX < 4, `:=`(check_lake_depth = "< 4m")]
+NLA_MB[DEPTHMAX >= 5, `:=`(check_lake_depth = ">= 5m")]
+NLA_MB[DEPTHMAX < 5, `:=`(check_lake_depth = "< 5m")]
 
 # Model
 mod<-glmer.nb(round(NLA_MB$ssCY,0) ~ log10NTL + (log10NTL|ECO_NUTA), data=NLA_MB)

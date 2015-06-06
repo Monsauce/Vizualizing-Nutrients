@@ -35,7 +35,7 @@ shinyServer(function(input, output) {
   # Will need to change src once in production
   output$banner <- renderUI({
     # HTML format: <IMG SRC="image.gif" ALT="some text" WIDTH=32 HEIGHT=32>
-    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/NLAViz/Banner.png\">"))
+    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/NLAViz/Banner.png\" >"))
   })
   # outputs Nitrogen.gif
   # Will need to change src once in production
