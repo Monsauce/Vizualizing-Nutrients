@@ -100,10 +100,8 @@ shinyServer(function(input, output) {
       theme(panel.background = element_rect(fill = "white"))+
       scale_size_continuous(range = c(1,7))+
       scale_colour_manual(values = c("#C39A6B","#B51F2D", "#009344","#FFF100","#A87B4F","#1B75BB","#74B7E4","#808284","#FEDD4E","#006738","white"))+
-      guides(colour=FALSE)+
-      scale_size_continuous(name="Cyanobacterial biomass")+
-      theme(legend.title = element_text(size=12))+
-      theme(legend.key = element_blank())
+      theme(legend.position="none")
+      
     
     return(p)
   })
