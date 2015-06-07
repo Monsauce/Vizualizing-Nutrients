@@ -11,7 +11,10 @@ shinyServer(function(input, output) {
   output$slider <- renderUI({
     sliderInput(inputId="nut",
                 label="Choose your nitrogen input (mg/L)",
-                value=2.5, min=1, max=5.0)
+                value=2.5, 
+                min=1, 
+                max=5.0,
+                step = 0.1)
   })
   # outputs checkbox for lake origin: man-made/natural
   output$lake_origin_check <- renderUI({
