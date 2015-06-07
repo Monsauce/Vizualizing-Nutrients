@@ -94,7 +94,7 @@ shinyServer(function(input, output) {
       theme(axis.title.y = element_blank())+
       theme(panel.grid.major = element_blank())+
       theme(panel.grid.minor = element_blank())+
-      theme(panel.background = element_rect(fill = "#74B7E4"))+
+      theme(panel.background = element_rect(fill = "white"))+
       scale_size_continuous(range = c(1,7))+
       scale_colour_manual(values = c("#C39A6B","#B51F2D", "#009344","#FFF100","#A87B4F","#1B75BB","#74B7E4","#808284","#FEDD4E","#006738","white"))+
       theme(legend.position="none")

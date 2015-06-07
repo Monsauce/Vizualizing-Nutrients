@@ -34,7 +34,7 @@ shinyUI(fluidPage(
            textOutput("question"),
            br(),
            htmlOutput("slider"),
-           column(4,
+           column(6,
                   htmlOutput("lake_origin_check")
            ),
            column(4,
@@ -45,9 +45,11 @@ shinyUI(fluidPage(
     column(8,
            plotOutput("CyanoMap",  
                       width = "900px", 
-                      height = "400px")
+                      height = "500px")
     )
-  )
+  ),
+  fluidRow(br(),
+           br())
   
 ))
 
