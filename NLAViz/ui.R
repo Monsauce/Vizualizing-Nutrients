@@ -7,11 +7,11 @@ library(data.table)
 shinyUI(fluidPage(
   tags$style("body {background-color: #74B7E4; }"),
   tags$head(tags$style("#intro {color: black;
-                                font-size: 24px;
+                                font-size: 20px;
                                 font-face: 'arial bold';
                               }")),
   tags$head(tags$style("#question {color: black;
-                                font-size: 24px;
+                                font-size: 20px;
                                 font-face: 'arial bold';
                               }")),
   fluidRow(
