@@ -11,7 +11,7 @@ shinyUI(fluidPage(
                                 font-face: 'arial bold';
                               }")),
   tags$head(tags$style("#question {color: black;
-                                font-size: 24px;
+                                font-size: 20px;
                                 font-face: 'arial bold';
                               }")),
   fluidRow(
