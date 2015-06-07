@@ -31,25 +31,28 @@ shinyUI(fluidPage(
     br()
     ),
   fluidRow(
-    column(4,
+    column(2,
+           br()
+    ),
+    column(3, align = "left",
            textOutput("intro"),
            br(),
            textOutput("question"),
            br(),
            htmlOutput("slider"),
-           column(6,
+           column(5,
                   htmlOutput("lake_origin_check")
            ),
-           column(4,
+           column(5,
                   htmlOutput("lake_depth_check")
            )
            
     ),
-    column(8,
+    column(6, align = "left",
            plotOutput("CyanoMap",  
-                      width = "900px", 
-                      height = "500px")
-    )
+                      width = "650px", 
+                      height = "400px")
+    ) 
   ),
   fluidRow(br(),
            br())
