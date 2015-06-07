@@ -31,10 +31,7 @@ shinyUI(fluidPage(
     br()
     ),
   fluidRow(
-    column(2,
-           br()
-    ),
-    column(3, align = "left",
+    column(3, offset = 2, align = "left",
            textOutput("intro"),
            br(),
            textOutput("question"),
@@ -50,7 +47,7 @@ shinyUI(fluidPage(
     ),
     column(6, align = "left",
            plotOutput("CyanoMap",  
-                      width = "650px", 
+                      width = "647px", 
                       height = "400px")
     ) 
   ),
