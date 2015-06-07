@@ -1,42 +1,50 @@
-blibrary(shiny)
+library(shiny)
 library(RCurl)
 library(ggplot2)
 library(lme4)
 library(data.table)
 
 shinyUI(fluidPage(
-  titlePanel(strong(h1("Now you manipulate the input of nutirients"))),
-  
+  tags$style("body {background-color: #74B7E4; }"),
+  tags$head(tags$style("#intro {color: black;
+                                font-size: 24px;
+                                font-face: 'arial bold';
+                              }")),
+  tags$head(tags$style("#question {color: black;
+                                font-size: 24px;
+                                font-face: 'arial bold';
+                              }")),
+  fluidRow(
+    htmlOutput("nitrogen_gif"),
+    tags$style("#nitrogen_gif img{ 
+                                  margin: auto;
+                                   }")
+    
+  ),
+  fluidRow(
+    htmlOutput("dilution")
+  ),
+  fluidRow(
+    br()
+    ),
   fluidRow(
     column(4,
-           helpText("Here a range of total nitrogen concentrations (on a log scale) representative of continental U.S. lakes and reservoirs (data source: US EPA 2009, National Lakes Assessment (2007)). Choose a nitrogen input using the slider. What happens as you increase total nitrogen concentrations? Does the type of lake and depth change how big the bloom is? Each color is a different region of the US."),
+           textOutput("intro"),
+           br(),
+           textOutput("question"),
            br(),
            htmlOutput("slider"),
-           htmlOutput("lake_origin_check"),
-           htmlOutput("lake_depth_check")
+           column(4,
+                  htmlOutput("lake_origin_check")
+           ),
+           column(4,
+                  htmlOutput("lake_depth_check")
+           )
+           
     ),
     column(8,
-           plotOutput("CyanoMap",  width = "1000px", height = "600px")
+           plotOutput("CyanoMap",  width = "900px", height = "400px")
     )
-  ),
-  fluidRow(
-    # Calls Banner.png
-    htmlOutput("banner"),
-    # Changes the width of the fluidRow
-    width = 8
-  ),
-  fluidRow(
-    # Calls Nitrogen.gif
-    htmlOutput("nitrogen_gif"),
-    # Changes the width of the fluidRow
-    width = 12
-  ),
-  fluidRow(
-    # Calls Dilutions.png
-    htmlOutput("dilution"),
-    # Changes the width of the fluidRow
-    width = 8
   )
-  
   
 ))

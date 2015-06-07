@@ -31,23 +31,17 @@ shinyServer(function(input, output) {
                        choices = lake_choices,
                        selected = lake_choices)
   })
-  # outputs Banner.png
-  # Will need to change src once in production
-  output$banner <- renderUI({
-    # HTML format: <IMG SRC="image.gif" ALT="some text" WIDTH=32 HEIGHT=32>
-    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/NLAViz/Banner.png\">"))
-  })
   # outputs Nitrogen.gif
   # Will need to change src once in production
   output$nitrogen_gif <- renderUI({
     # HTML format: <IMG SRC="image.gif" ALT="some text" WIDTH=32 HEIGHT=32>
-    return(HTML("<img src=\"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/NLAViz/Nitrogen.gif\">"))
+    return(HTML("<img src=\"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/Nitrogen.gif\">"))
   })
   # outputs Dilutions.png
   # will need to change src once in production
   output$dilution <- renderUI({
     # HTML format: <IMG SRC="image.gif" ALT="some text" WIDTH=32 HEIGHT=32>
-    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/NLAViz/Dilutions.png\">"))
+    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/Dilutions.png\" >"))
   })
   
   # reactive functions
@@ -97,7 +91,7 @@ shinyServer(function(input, output) {
       theme(axis.title.y = element_blank())+
       theme(panel.grid.major = element_blank())+
       theme(panel.grid.minor = element_blank())+
-      theme(panel.background = element_rect(fill = "white"))+
+      theme(panel.background = element_rect(fill = "#74B7E4"))+
       scale_size_continuous(range = c(1,7))+
       scale_colour_manual(values = c("#C39A6B","#B51F2D", "#009344","#FFF100","#A87B4F","#1B75BB","#74B7E4","#808284","#FEDD4E","#006738","white"))+
       theme(legend.position="none")
@@ -105,5 +99,14 @@ shinyServer(function(input, output) {
     
     return(p)
   })
+  output$intro <- renderText({
+    return("Here a range of total nitrogen concentrations (on a log scale) representative of continental U.S. lakes and reservoirs (data source: US EPA 2009, National Lakes Assessment (2007)).")    
+  })
+  output$question <- renderText({
+    return("Choose a nitrogen input using the slider. What happens as you increase total nitrogen concentrations? Does the type of lake and depth change how big the bloom is? Each color is a different region of the US.")
+  })
 
-})
+  
+  })
+
+
