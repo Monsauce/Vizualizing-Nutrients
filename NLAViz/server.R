@@ -11,7 +11,10 @@ shinyServer(function(input, output) {
   output$slider <- renderUI({
     sliderInput(inputId="nut",
                 label="Choose your nitrogen input (mg/L)",
-                value=2.5, min=1, max=5.0)
+                value=2.5, 
+                min=1, 
+                max=5.0,
+                step = 0.1)
   })
   # outputs checkbox for lake origin: man-made/natural
   output$lake_origin_check <- renderUI({
@@ -41,7 +44,7 @@ shinyServer(function(input, output) {
   # will need to change src once in production
   output$dilution <- renderUI({
     # HTML format: <IMG SRC="image.gif" ALT="some text" WIDTH=32 HEIGHT=32>
-    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/Dilutions.png\" >"))
+    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/Dilutions.png\">"))
   })
   
   # reactive functions
@@ -91,14 +94,14 @@ shinyServer(function(input, output) {
       theme(axis.title.y = element_blank())+
       theme(panel.grid.major = element_blank())+
       theme(panel.grid.minor = element_blank())+
-      theme(panel.background = element_rect(fill = "#74B7E4"))+
+      theme(panel.background = element_rect(fill = "white"))+
       scale_size_continuous(range = c(1,7))+
       scale_colour_manual(values = c("#C39A6B","#B51F2D", "#009344","#FFF100","#A87B4F","#1B75BB","#74B7E4","#808284","#FEDD4E","#006738","white"))+
       theme(legend.position="none")
       
     
     return(p)
-  })
+  }, bg="transparent")
   output$intro <- renderText({
     return("Here a range of total nitrogen concentrations (on a log scale) representative of continental U.S. lakes and reservoirs (data source: US EPA 2009, National Lakes Assessment (2007)).")    
   })

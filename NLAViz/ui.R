@@ -15,14 +15,17 @@ shinyUI(fluidPage(
                                 font-face: 'arial bold';
                               }")),
   fluidRow(
-    htmlOutput("nitrogen_gif"),
-    tags$style("#nitrogen_gif img{ 
-                                  margin: auto;
-                                   }")
+    column(12,
+           htmlOutput("nitrogen_gif"),
+           align = "center"
+    )
     
   ),
   fluidRow(
-    htmlOutput("dilution")
+    column(12,
+           htmlOutput("dilution"),
+           align = "center"
+    )
   ),
   fluidRow(
     br()
@@ -34,7 +37,7 @@ shinyUI(fluidPage(
            textOutput("question"),
            br(),
            htmlOutput("slider"),
-           column(4,
+           column(6,
                   htmlOutput("lake_origin_check")
            ),
            column(4,
@@ -43,8 +46,14 @@ shinyUI(fluidPage(
            
     ),
     column(8,
-           plotOutput("CyanoMap",  width = "900px", height = "400px")
+           plotOutput("CyanoMap",  
+                      width = "900px", 
+                      height = "500px")
     )
-  )
+  ),
+  fluidRow(br(),
+           br())
   
 ))
+
+
