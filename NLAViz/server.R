@@ -44,7 +44,7 @@ shinyServer(function(input, output) {
   # will need to change src once in production
   output$dilution <- renderUI({
     # HTML format: <IMG SRC="image.gif" ALT="some text" WIDTH=32 HEIGHT=32>
-    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/Dilutions.png\" >"))
+    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/Dilutions.png\">"))
   })
   
   # reactive functions

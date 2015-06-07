@@ -15,14 +15,17 @@ shinyUI(fluidPage(
                                 font-face: 'arial bold';
                               }")),
   fluidRow(
-    htmlOutput("nitrogen_gif"),
-    tags$style("#nitrogen_gif img{ 
-                                  margin: auto;
-                                   }")
+    column(12,
+           htmlOutput("nitrogen_gif"),
+           align = "center"
+    )
     
   ),
   fluidRow(
-    htmlOutput("dilution")
+    column(12,
+           htmlOutput("dilution"),
+           align = "center"
+    )
   ),
   fluidRow(
     br()
