@@ -3,16 +3,19 @@ library(RCurl)
 library(ggplot2)
 library(lme4)
 library(data.table)
+library(maps)
 
 shinyUI(fluidPage(
   tags$style("body {background-color: #FFFFFF; }"),
   tags$head(tags$style("#intro {color: black;
                                 font-size: 14px;
-                                font-face: 'arial bold';
+                                font-family: 'Arial';
+                                font-weight: 800;
                               }")),
   tags$head(tags$style("#question {color: black;
                                 font-size: 14px;
-                                font-face: 'arial bold';
+                                font-family: 'Arial';
+                                font-weight: 800;
                               }")),
   fluidRow(
     column(12,
@@ -31,8 +34,9 @@ shinyUI(fluidPage(
     br()
     ),
   fluidRow(
-    titlePanel("How does bloom size change with nitrogen input?"),
-    column(3, offset = 1, align = "left",
+    titlePanel("How does cyanobacteria bloom size change with nitrogen input?"),
+    align = "center",
+    column(3, offset = 2, align = "left",
            textOutput("intro"),
            br(),
            textOutput("question"),

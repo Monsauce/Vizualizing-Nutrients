@@ -3,6 +3,7 @@ library(RCurl)
 library(ggplot2)
 library(lme4)
 library(data.table)
+library(maps)
 
 # Define a server for the Shiny app
 shinyServer(function(input, output) {
@@ -21,8 +22,8 @@ shinyServer(function(input, output) {
     dt <- getData()
     lake_choices <- as.character(unique(dt[, LAKE_ORIGIN]))
     checkboxGroupInput(inputId = "lake_origin",
-                label = "Choose a Lake Origin",
-                choices = list("Natural", "Man-made"),
+                label = "Choose a lake origin",
+                choices = lake_choices,
                 selected = lake_choices)
   })
   # outputs checkbox for lake depth: <= 4m / > 4m
@@ -30,8 +31,8 @@ shinyServer(function(input, output) {
     dt <- getData()
     lake_choices <- as.character(unique(dt[, check_lake_depth]))
     checkboxGroupInput(inputId = "lake_depth",
-                       label = "Choose a Lake Depth",
-                       choices = list("Deep", "Shallow"),
+                       label = "Choose a lake depth",
+                       choices = lake_choices,
                        selected = lake_choices)
   })
   # outputs Nitrogen.gif
@@ -86,7 +87,7 @@ shinyServer(function(input, output) {
     Cyano <- predictData()
     all_states <- map_data("state")
     p <- ggplot()+geom_polygon(data=all_states, aes(x=long, y=lat, group = group),colour="#939597", fill="#939597")+
-      geom_point(data=Cyano, aes(colour=ECO_NUTA, x=LON_DD, y=LAT_DD, size = predictions))+
+      geom_point(data=Cyano, aes(colour=ECO_NUTA, x=LON_DD, y=LAT_DD, size = predictions^1.2))+
       theme(axis.text.y = element_blank())+
       theme(axis.ticks = element_blank())+
       theme(axis.text.x = element_blank())+
@@ -95,7 +96,7 @@ shinyServer(function(input, output) {
       theme(panel.grid.major = element_blank())+
       theme(panel.grid.minor = element_blank())+
       theme(panel.background = element_rect(fill = "white"))+
-      scale_size_continuous(range = c(1,7))+
+      scale_size_identity()+
       scale_colour_manual(values = c("#C39A6B","#B51F2D", "#009344","#FFF100","#A87B4F","#1B75BB","#74B7E4","#808284","#FEDD4E","#006738","white"))+
       theme(legend.position="none")
       
@@ -103,10 +104,10 @@ shinyServer(function(input, output) {
     return(p)
   }, bg="transparent")
   output$intro <- renderText({
-    return("Here a range of total nitrogen concentrations (on a log scale) representative of continental U.S. lakes and reservoirs (data source: US EPA 2009, National Lakes Assessment (2007)).")    
+    return("Now you try to input nitrogen. Larger circles are larger cyanobacterial blooms. What happens to bloom size as you change in the input of nitrogen? You can also pick the depth and type of lake to look at. (Nitrogen on a log scale. Data source: US EPA 2009, National Lakes Assessment (2007)).")    
   })
   output$question <- renderText({
-    return("Choose a nitrogen input using the slider. What happens as you increase total nitrogen concentrations? Does the type of lake and depth change how big the bloom is? Each color is a different region of the US.")
+    return("The map is color coded for different regions of the U.S.")
   })
 
   

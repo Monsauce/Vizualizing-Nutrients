@@ -3,6 +3,7 @@ library(RCurl)
 library(ggplot2)
 library(lme4)
 library(data.table)
+library(maps)
 
 # Data
 # Will need to change this in the production shiny app
@@ -25,8 +26,12 @@ NLA_MB$log10NTL <- log10(NLA_MB$NTL)
 NLA_MB$log10PTL <- log10(NLA_MB$PTL)
 
 # new check_lake_depth for easier use in shiny app
-NLA_MB[DEPTHMAX >= 5, `:=`(check_lake_depth = ">= 5m")]
-NLA_MB[DEPTHMAX < 5, `:=`(check_lake_depth = "< 5m")]
+NLA_MB[DEPTHMAX >= 5, `:=`(check_lake_depth = "Deep")]
+NLA_MB[DEPTHMAX < 5, `:=`(check_lake_depth = "Shallow")]
+
+# new check_lake_origin for easier use in shiny app
+NLA_MB[LAKE_ORIGIN == "NATURAL", `:=`(LAKE_ORIGIN = "Natural")]
+NLA_MB[LAKE_ORIGIN == "MAN-MADE", `:=`(LAKE_ORIGIN = "Man-made")]
 
 # Model
 mod<-glmer.nb(round(NLA_MB$ssCY,0) ~ log10NTL + (log10NTL|ECO_NUTA), data=NLA_MB)
