@@ -5,13 +5,13 @@ library(lme4)
 library(data.table)
 
 shinyUI(fluidPage(
-  tags$style("body {background-color: #74B7E4; }"),
+  tags$style("body {background-color: #FFFFFF; }"),
   tags$head(tags$style("#intro {color: black;
-                                font-size: 20px;
+                                font-size: 14px;
                                 font-face: 'arial bold';
                               }")),
   tags$head(tags$style("#question {color: black;
-                                font-size: 20px;
+                                font-size: 14px;
                                 font-face: 'arial bold';
                               }")),
   fluidRow(
@@ -31,7 +31,8 @@ shinyUI(fluidPage(
     br()
     ),
   fluidRow(
-    column(3, offset = 2, align = "left",
+    titlePanel("How does bloom size change with nitrogen input?"),
+    column(3, offset = 1, align = "left",
            textOutput("intro"),
            br(),
            textOutput("question"),

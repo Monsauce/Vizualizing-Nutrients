@@ -10,7 +10,7 @@ shinyServer(function(input, output) {
   # outputs slider button
   output$slider <- renderUI({
     sliderInput(inputId="nut",
-                label="Choose your nitrogen input (mg/L)",
+                label="Choose your nitrogen input (ug/L)",
                 value=2.5, 
                 min=1, 
                 max=5.0,
@@ -22,7 +22,7 @@ shinyServer(function(input, output) {
     lake_choices <- as.character(unique(dt[, LAKE_ORIGIN]))
     checkboxGroupInput(inputId = "lake_origin",
                 label = "Choose a Lake Origin",
-                choices = lake_choices,
+                choices = list("Natural", "Man-made"),
                 selected = lake_choices)
   })
   # outputs checkbox for lake depth: <= 4m / > 4m
@@ -31,20 +31,20 @@ shinyServer(function(input, output) {
     lake_choices <- as.character(unique(dt[, check_lake_depth]))
     checkboxGroupInput(inputId = "lake_depth",
                        label = "Choose a Lake Depth",
-                       choices = lake_choices,
+                       choices = list("Deep", "Shallow"),
                        selected = lake_choices)
   })
   # outputs Nitrogen.gif
   # Will need to change src once in production
   output$nitrogen_gif <- renderUI({
     # HTML format: <IMG SRC="image.gif" ALT="some text" WIDTH=32 HEIGHT=32>
-    return(HTML("<img src=\"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/Nitrogen.gif\">"))
+    return(HTML("<img src=\"https://raw.githubusercontent.com/Monsauce/Vizualizing-Nutrients/master/Nitrogen.gif\">"))
   })
   # outputs Dilutions.png
   # will need to change src once in production
   output$dilution <- renderUI({
     # HTML format: <IMG SRC="image.gif" ALT="some text" WIDTH=32 HEIGHT=32>
-    return(HTML("<img src = \"C:/Users/kmenciso/Desktop/EPA_Visualization/Vizualizing-Nutrients/Dilutions.png\">"))
+    return(HTML("<img src = \"https://raw.githubusercontent.com/Monsauce/Vizualizing-Nutrients/master/Dilutions.png\">"))
   })
   
   # reactive functions
