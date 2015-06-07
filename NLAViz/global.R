@@ -11,6 +11,7 @@ NLA_MB <- data.table(read.csv("C:/Users/kmenciso/Desktop/EPA_Visualization/Vizua
 # NLA_MB<-read.csv(text=NLA_MB.URL)
 # 
 
+NLA_MB <- data.table(NLA_MB)
 # Renaming variables
 # Using data.table syntax
 setnames(NLA_MB, 
@@ -29,3 +30,5 @@ NLA_MB[DEPTHMAX < 5, `:=`(check_lake_depth = "< 5m")]
 
 # Model
 mod<-glmer.nb(round(NLA_MB$ssCY,0) ~ log10NTL + (log10NTL|ECO_NUTA), data=NLA_MB)
+
+

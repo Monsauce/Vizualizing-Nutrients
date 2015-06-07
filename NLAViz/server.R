@@ -98,7 +98,7 @@ shinyServer(function(input, output) {
       
     
     return(p)
-  })
+  }, bg="transparent")
   output$intro <- renderText({
     return("Here a range of total nitrogen concentrations (on a log scale) representative of continental U.S. lakes and reservoirs (data source: US EPA 2009, National Lakes Assessment (2007)).")    
   })

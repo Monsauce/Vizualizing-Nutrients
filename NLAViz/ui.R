@@ -43,8 +43,12 @@ shinyUI(fluidPage(
            
     ),
     column(8,
-           plotOutput("CyanoMap",  width = "900px", height = "400px")
+           plotOutput("CyanoMap",  
+                      width = "900px", 
+                      height = "400px")
     )
   )
   
 ))
+
+
