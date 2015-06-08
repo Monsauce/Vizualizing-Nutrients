@@ -12,17 +12,17 @@ shinyServer(function(input, output) {
   output$slider <- renderUI({
     sliderInput(inputId="nut",
                 label="Choose your nitrogen input (ug/L)",
-                value=2.5, 
-                min=1, 
-                max=5.0,
-                step = 0.1)
+                value=2500, 
+                min=10, 
+                max=5000,
+                step = 100)
   })
   # outputs checkbox for lake origin: man-made/natural
   output$lake_origin_check <- renderUI({
     dt <- getData()
     lake_choices <- as.character(unique(dt[, LAKE_ORIGIN]))
     checkboxGroupInput(inputId = "lake_origin",
-                label = "Choose a lake origin",
+                label = "Choose a lake type",
                 choices = lake_choices,
                 selected = lake_choices)
   })
@@ -61,7 +61,7 @@ shinyServer(function(input, output) {
                check_lake_depth %in% input$lake_depth]
     # Create an error message when no checkboxes are marked
     validate(
-      need(nrow(dt) != 0, "Please check at least one option in Lake Origin or Lake Depth")
+      need(nrow(dt) != 0, "Please check at least one lake type or lake depth option")
     )
     dt <- dt[, list(LON_DD, 
                     LAT_DD, 
@@ -74,7 +74,7 @@ shinyServer(function(input, output) {
     dt <- filterData()
     # Create an error message when no checkboxes are marked
     validate(
-      need(nrow(dt) != 0, "Please check at least one option Lake Origin or Lake Depth")
+      need(nrow(dt) != 0, "Please check at least one lake type or lake depth option")
     )
     setnames(dt, old = "ni", new =  c("log10NTL"))
     # Get predictions based on the model
@@ -104,10 +104,10 @@ shinyServer(function(input, output) {
     return(p)
   }, bg="transparent")
   output$intro <- renderText({
-    return("Now you try to input nitrogen. Larger circles are larger cyanobacterial blooms. What happens to bloom size as you change in the input of nitrogen? You can also pick the depth and type of lake to look at. (Nitrogen on a log scale. Data source: US EPA 2009, National Lakes Assessment (2007)).")    
+    return("Now you try to input nitrogen. Larger circles are larger cyanobacterial blooms. What happens to bloom size as you change the input of nitrogen? Are lakes in some areas affected more or less than others? You can also pick the depth and type of lake to look at. (Nitrogen on a log scale. Data source: US EPA 2009, National Lakes Assessment (2007)).")    
   })
   output$question <- renderText({
-    return("The map is color coded for different regions of the U.S.")
+    return("The map is color coded for different regions of the U.S. These regions represent lakes with different water quality states, surrounding land use and nutrient levels.")
   })
 
   

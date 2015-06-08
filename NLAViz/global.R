@@ -26,8 +26,8 @@ NLA_MB$log10NTL <- log10(NLA_MB$NTL)
 NLA_MB$log10PTL <- log10(NLA_MB$PTL)
 
 # new check_lake_depth for easier use in shiny app
-NLA_MB[DEPTHMAX >= 5, `:=`(check_lake_depth = "Deep")]
-NLA_MB[DEPTHMAX < 5, `:=`(check_lake_depth = "Shallow")]
+NLA_MB[DEPTHMAX >= 5, `:=`(check_lake_depth = "Deep (>= 5)")]
+NLA_MB[DEPTHMAX < 5, `:=`(check_lake_depth = "Shallow (<5)")]
 
 # new check_lake_origin for easier use in shiny app
 NLA_MB[LAKE_ORIGIN == "NATURAL", `:=`(LAKE_ORIGIN = "Natural")]
